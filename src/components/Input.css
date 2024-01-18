@@ -17,4 +17,6 @@
 
 .form-control::placeholder {
   color: grey;
+  font-size: small;
+  font-weight: 600;
 }

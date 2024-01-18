@@ -18,6 +18,7 @@ const Form = ({
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isValidPhone, setIsValidPhone] = useState(true);
   const [isValidPassword, setIsValidPassword] = useState(true);
+  const [isValidCheckbox, setIsValidCheckbox] = useState(true);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -56,6 +57,7 @@ const Form = ({
     let countryValid = true;
     let nameValid = true;
     let passwordValid = true;
+    let checkboxValid = true;
 
     console.log(elements);
     if (showRegistrationFields) {
@@ -66,14 +68,16 @@ const Form = ({
 
     emailValid = validateEmail(elements["Email"].value);
     passwordValid = elements["Password"].value != "";
+    checkboxValid = elements["terms"].checked == true;
 
     setIsValidPhone(phoneValid);
     setIsValidEmail(emailValid);
     setIsValidName(nameValid);
     setIsValidCountry(countryValid);
     setIsValidPassword(passwordValid);
+    setIsValidCheckbox(checkboxValid);
 
-    return emailValid && phoneValid && nameValid;
+    return emailValid && phoneValid && nameValid && countryValid && passwordValid && checkboxValid;
   };
 
   return (
@@ -85,16 +89,14 @@ const Form = ({
         >
           <LiaTimesSolid />
         </div>
-        <form
-          action=""
-          className="fw-semibold text-black-50"
-          onSubmit={onSubmitHandler}
-        >
-          <h2 className="d-flex align-items-center justify-content-between text-center h4 fw-bold form-heading mb-4">
-            <div className="point mt-1"></div>
-            {heading}
-            <div className="point mt-1"></div>
-          </h2>
+        <form noValidate className="fw-semibold text-black-50" onSubmit={onSubmitHandler}>
+          <div className="d-flex justify-content-between align-items-center mb-4">
+            <div className="point"></div>
+            <h2 className="d-flex align-items-center justify-content-between text-center h4 fw-bold form-heading">
+              {heading}
+            </h2>
+            <div className="point"></div>
+          </div>
           {showRegistrationFields && (
             <Input type="text" placeholder="Name" isValid={isValidName} />
           )}
@@ -123,7 +125,7 @@ const Form = ({
               />
             )}
           </div>
-          <Checkbox label="I accept terms & conditions" />
+          <Checkbox label="I accept terms & conditions" isRequired={true} isValid={isValidCheckbox} name={"terms"} />
           <SubmitButton buttonText={buttonText} />
         </form>
       </div>

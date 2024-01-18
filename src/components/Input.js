@@ -7,7 +7,7 @@ const Input = ({ type, placeholder, isValid = true }) => {
           type={type}
           name={placeholder}
           placeholder={placeholder}
-          className={`form-control fw-semibold ps-0 ${
+          className={`form-control ps-0 ${
             !isValid ? "invalid-input" : ""
           }`}
         />

@@ -5,6 +5,16 @@
   box-shadow: none;
 }
 
+.form-control:focus {
+  outline: none;
+  box-shadow: none;
+  border-bottom: 2px solid var(--blue-dark);
+}
+
 .invalid-input {
   border-bottom: 2px solid red;
+}
+
+.form-control::placeholder {
+  color: grey;
 }

@@ -1,6 +1,6 @@
 const FormToggler = ({linkLabelText, linkText, toggleAction}) => {
   return (
-    <p className="text-center small mb-0">
+    <p className="text-center fw-semibold text-black-50 small mb-0">
       {linkLabelText}&nbsp;
       <a
         href="#"

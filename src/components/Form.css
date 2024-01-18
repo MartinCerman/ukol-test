@@ -1,16 +1,19 @@
-.form-container {
-    max-width: 400px;
-    background-color: white;
-  }
-
 .cross {
-    cursor: pointer;
-    color: var(--green-dark);
+  cursor: pointer;
+  color: var(--green-dark);
+}
+
+.form-heading {
+  color: var(--blue-dark);
 }
 
 .point {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: linear-gradient(to right, var(--blue-dark), var(--green-dark));
-  }
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(to right, var(--blue-dark), var(--green-dark));
+}
+
+.form-group + svg {
+    cursor: pointer;
+}

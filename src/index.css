@@ -1,6 +1,10 @@
 :root {
-    --blue-dark: rgb(0, 100, 230);    
-    --blue-light: rgb(60, 134, 231);
-    --green-dark: rgb(0, 229, 173);
-    --azure: rgba(64, 223, 223, 0.719);
+  --blue-dark: rgb(0, 100, 230);
+  --blue-light: rgb(60, 134, 231);
+  --green-dark: rgb(0, 229, 173);
+  --azure: rgba(64, 223, 223, 0.719);
+}
+
+body {
+  background: linear-gradient(to right, var(--blue-dark), var(--green-dark));
 }

@@ -9,7 +9,6 @@ const Input = ({ type, placeholder, isValid = true }) => {
           className={`form-control fw-semibold ps-0 ${
             !isValid ? "invalid-input" : ""
           }`}
-          required
         />
         <span className="text-danger small">
           {!isValid ? `${placeholder} not valid!` : ""}

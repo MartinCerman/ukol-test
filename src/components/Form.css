@@ -1,0 +1,16 @@
+.form-container {
+    max-width: 400px;
+    background-color: white;
+  }
+
+.cross {
+    cursor: pointer;
+    color: var(--green-dark);
+}
+
+.point {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: linear-gradient(to right, var(--blue-dark), var(--green-dark));
+  }

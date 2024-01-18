@@ -1,0 +1,10 @@
+.form-control {
+  border: none;
+  border-bottom: 2px solid var(--azure);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.invalid-input {
+  border-bottom: 2px solid red;
+}

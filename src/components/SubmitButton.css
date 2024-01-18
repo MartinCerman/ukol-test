@@ -1,0 +1,5 @@
+.btn {
+  background: linear-gradient(to right, var(--blue-light), var(--green-dark));
+  border: none;
+  transition: all 200ms ease-in-out;
+}

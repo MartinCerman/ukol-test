@@ -13,43 +13,67 @@ const Form = ({
   showRegistrationFields = false,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [isValidName, setIsValidName] = useState(true);
+  const [isValidCountry, setIsValidCountry] = useState(true);
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isValidPhone, setIsValidPhone] = useState(true);
+  const [isValidPassword, setIsValidPassword] = useState(true);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
+  // Tests an email against a regular expression and returns true if it's valid,
+  // false otherwise.
   const validateEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     return emailPattern.test(String(email).toLowerCase());
   };
 
+  // Tests a phone number against a regular expression and returns true if it's valid,
+  // false otherwise.
   const validatePhone = (phoneNumber) => {
     const phonePattern = /^\+?\s?(\d\s?){6,}$/;
     return phonePattern.test(phoneNumber);
   };
 
+  // Notifies user if all fields are valid.
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    let emailValid = true;
-    let phoneValid = true;
 
-    if (showRegistrationFields) {
-      emailValid = validateEmail(e.target[1].value);
-      phoneValid = validatePhone(e.target[3].value);
-    } else {
-      emailValid = validateEmail(e.target[0].value);
-    }
-
-    setIsValidPhone(phoneValid);
-    setIsValidEmail(emailValid);
-
-    if (emailValid && phoneValid) {
+    if (validateFields(e.target.elements)) {
       showRegistrationFields
         ? alert("Account created")
         : alert("Successfully logged in");
     }
+  };
+
+  // Runs validation functions for input fields and returns true if all are valid,
+  // false otherwise.
+  const validateFields = (elements) => {
+    let emailValid = true;
+    let phoneValid = true;
+    let countryValid = true;
+    let nameValid = true;
+    let passwordValid = true;
+
+    console.log(elements);
+    if (showRegistrationFields) {
+      phoneValid = validatePhone(elements["Phone"].value);
+      nameValid = elements["Name"].value != "";
+      countryValid = elements["Country"].value != "";
+    }
+
+    emailValid = validateEmail(elements["Email"].value);
+    passwordValid = elements["Password"].value != "";
+
+    setIsValidPhone(phoneValid);
+    setIsValidEmail(emailValid);
+    setIsValidName(nameValid);
+    setIsValidCountry(countryValid);
+    setIsValidPassword(passwordValid);
+
+    return emailValid && phoneValid && nameValid;
   };
 
   return (
@@ -66,15 +90,17 @@ const Form = ({
           className="fw-semibold text-black-50"
           onSubmit={onSubmitHandler}
         >
-          <h2 className="d-flex align-items-center justify-content-between text-center h3 fw-bold form-heading mb-4">
+          <h2 className="d-flex align-items-center justify-content-between text-center h4 fw-bold form-heading mb-4">
             <div className="point mt-1"></div>
             {heading}
             <div className="point mt-1"></div>
           </h2>
-          {showRegistrationFields && <Input type="text" placeholder="Name" />}
+          {showRegistrationFields && (
+            <Input type="text" placeholder="Name" isValid={isValidName} />
+          )}
           <Input type="email" placeholder="Email" isValid={isValidEmail} />
           {showRegistrationFields && (
-            <Input type="text" placeholder="Country" />
+            <Input type="text" placeholder="Country" isValid={isValidCountry} />
           )}
           {showRegistrationFields && (
             <Input type="tel" placeholder="Phone" isValid={isValidPhone} />
@@ -83,6 +109,7 @@ const Form = ({
             <Input
               type={showPassword ? "text" : "password"}
               placeholder="Password"
+              isValid={isValidPassword}
             />
             {showPassword ? (
               <AiOutlineEye

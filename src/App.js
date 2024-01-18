@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
-      {!isClosed && hasLogin ?
+      {!isClosed ? (hasLogin ?
       <div className="form-container w-100 bg-white pb-4">
         <Form
           heading="Login Form"
@@ -43,7 +43,7 @@ function App() {
           linkText="Sign in"
           toggleAction={toggleForm}
         />
-      </div>}
+      </div>) : ""}
     </div>
   );
 }
